@@ -1,115 +1,128 @@
 <div class="jumbotron" style="background-color: #0069b4; color: white;">
-  <div class="container">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/img/seneca.png">
+                <h4>SENECA Mqtt Web Client DEMO</h4>
+            </div>
+
+            <div class="col-md-6 text-right">
+                <span class="badge badge-{{ (mqtt.state | async) | stateToClass }}">MQTT {{ (mqtt.state | async) | stateToString }}</span>
+                <br>
+                <span class="badge badge-{{ status | async | statusToColor }}">DEVICE {{ status | async | statusToString }} ({{ (status | async | statusToUptime)?.toLocaleString()  }})</span>
+                <br>
+                <span class="badge badge-primary">Updated {{ (mqtt.Updated | async)?.toLocaleString() }}</span>
+                <br>
+                <span class="badge badge-primary">Count {{ (mqtt.Count | async) }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Device info <a href="#" class="btn btn-primary btn-sm float-right" (click)="ReadDeviceInfo()">Read</a></h2>
+                </div>
+                <div class="card-body text-secondary" *ngIf="dev != null">
+                    <p class="card-text">HW {{ dev?.hw_code }},
+                        FW {{ dev?.fw_rev }}.{{ dev?.fw_build }}.{{ dev?.fw_code }}.{{ dev?.fw_model }}.{{
+                        dev?.fw_option }}
+                    </p>
+                    <p class="card-text" *ngIf="dev == null">
+                        No data, press read to get the device info.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
-      <div class="col-md-6">
-        <img src="assets/img/seneca.png">
-        <h4>SENECA Mqtt Web Client DEMO</h4>
-      </div>
+        <div class="col-md-6">
 
-      <div class="col-md-6 text-right">
-        <span class="badge badge-{{ (mqtt.state | async) | stateToClass }}">
-          MQTT {{ (mqtt.state | async) | stateToString }}
-        </span>
-        <br>
-        <span class="badge badge-{{ status | async | statusToColor }}">
-          DEVICE {{ status | async | statusToString }} ({{ (status | async | statusToUptime)?.toLocaleString()  }})
-        </span>
-        <br>
-        <span class="badge badge-primary">
-          Updated {{ (mqtt.Updated | async)?.toLocaleString() }}
-        </span>
-        <br>
-        <span class="badge badge-primary">
-          Count {{ (mqtt.Count | async) }}
-        </span>
-      </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>I/O</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <io name="DOUT 1" topic="DOUT1/get" command="33554496" digital="true"></io>
+                        </div>
 
+                        <div class="col-md-6">
+                            <io name="DOUT 2" topic="DOUT2/get" command="33570816" digital="true"></io>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <io name="DIN 1" topic="DIN1/get" command="0" digital="true"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="DIN 2" topic="DIN2/get" command="0" digital="true"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="DIN 1" topic="DIN3/get" command="0" digital="true"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="DIN 2" topic="DIN4/get" command="0" digital="true"></io>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <io name="AIN 1" topic="VAL1/get" command="0" [digital]="false"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="AIN 2" topic="VAL2/get" command="0" [digital]="false"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="POWER" topic="POW/get" command="0" [digital]="true"></io>
+                        </div>
+
+                        <div class="col-md-3">
+                            <io name="BATTERY" topic="VBAT/get" command="0" [digital]="true"></io>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ events.length }} Event/s <span class="badge badge-success"
+                                                          *ngIf="event_notification">New</span></h2>
+                </div>
+                <div class="card-body">
+                    <div *ngFor='let event of events;' class="alert alert-primary" role="alert">
+                        <strong>[{{ event | eventToType }}]</strong> {{ event | eventToId }} {{ event | eventToTime }}
+                        {{ event | eventToText }}
+                    </div>
+
+                    <p class="card-text" *ngIf="events.length == 0">No Events to display</p>
+                    <a href="#" class="card-link" (click)="ResetEvents()">Clear</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-6">
-
-      <div class="card">
-        <div class="card-header">
-          <h2>I/O</h2>
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <p>Copyright SENECA SRL - <a target="_blank" href="https://www.seneca.it">www.seneca.it</a></p>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <io name="DOUT 1" topic="DOUT1/get" command="33554496" digital="true"></io>
-            </div>
-
-            <div class="col-md-6">
-              <io name="DOUT 2" topic="DOUT2/get" command="33570816" digital="true"></io>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3">
-              <io name="DIN 1" topic="DIN1/get" command="0" digital="true"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="DIN 2" topic="DIN2/get" command="0" digital="true"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="DIN 1" topic="DIN3/get" command="0" digital="true"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="DIN 2" topic="DIN4/get" command="0" digital="true"></io>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3">
-              <io name="AIN 1" topic="VAL1/get" command="0" [digital]="false"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="AIN 2" topic="VAL2/get" command="0" [digital]="false"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="POWER" topic="POW/get" command="0" [digital]="true"></io>
-            </div>
-
-            <div class="col-md-3">
-              <io name="BATTERY" topic="VBAT/get" command="0" [digital]="true"></io>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-
-    <div class="col-md-6">
-
-      <div class="card">
-        <div class="card-header">
-          <h2>{{ events.length }} Event/s <span class="badge badge-success" *ngIf="event_notification">New</span></h2>
-        </div>
-        <div class="card-body">
-          <div *ngFor='let event of events;' class="alert alert-primary" role="alert">
-            <strong>[{{ event | eventToType }}]</strong> {{ event | eventToId }} {{ event | eventToTime }} {{ event | eventToText }}
-          </div>
-
-          <p class="card-text" *ngIf="events.length == 0">No Events to display</p>
-          <a href="#" class="card-link" (click)="ResetEvents()">Clear</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-12 text-center">
-      <p>Copyright SENECA SRL - <a target="_blank" href="https://www.seneca.it">www.seneca.it</a></p>
-    </div>
-  </div>
 </div>
