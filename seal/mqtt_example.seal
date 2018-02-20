@@ -15,7 +15,7 @@
       <THRESHOLDS MaxCallCounter="0" MaxSmsCounter="0" MaxDataCounter="0" />
     </GSM>
     <NET IsEnabled="T" IsPHYEnabled="T" IsPPPEnabled="F" IsDHCPEnabled="F">
-      <IP ServerAddress="192.168.85.189" SubnetMask="255.255.255.0" GatewayAddress="192.168.85.1" DnsAddress="8.8.8.8" />
+      <IP ServerAddress="192.168.90.102" SubnetMask="255.255.255.0" GatewayAddress="192.168.85.1" DnsAddress="8.8.8.8" />
       <AUTH IsEnabled="F" User="admin" Pass="admin" />
       <WEB IsEnabled="F" IsSDEnabled="T" Port="80" />
       <TELNET IsEnabled="F" />
@@ -96,8 +96,8 @@
       <MSG Text="DIN 1 ON" />
       <MSG Text="POW UP" />
       <MSG Text="POW DOWN" />
-      <MSG Text="BATTERY DOWN" />
       <MSG Text="BATTERY OK" />
+      <MSG Text="BATTERY DOWN" />
       <MSG />
       <MSG />
       <MSG />
@@ -847,10 +847,10 @@
       <NODE Name="BLK.MSG.4" Label="MSG3" InfoLine1="POW DOWN" InfoLine2="" Element="MSG.3" GridX="64" GridY="38">
         <PARAMS />
       </NODE>
-      <NODE Name="BLK.MSG.5" Label="MSG4" InfoLine1="BATTERY DOWN" InfoLine2="" Element="MSG.4" GridX="64" GridY="47">
+      <NODE Name="BLK.MSG.5" Label="MSG4" InfoLine1="BATTERY OK" InfoLine2="" Element="MSG.4" GridX="64" GridY="47">
         <PARAMS />
       </NODE>
-      <NODE Name="BLK.MSG.6" Label="MSG5" InfoLine1="BATTERY OK" InfoLine2="" Element="MSG.5" GridX="64" GridY="59">
+      <NODE Name="BLK.MSG.6" Label="MSG5" InfoLine1="BATTERY DOWN" InfoLine2="" Element="MSG.5" GridX="64" GridY="59">
         <PARAMS />
       </NODE>
       <NODE Name="BLK.EVENT.2" Label="SEC2" Option="1" InfoLine1="" InfoLine2="" Element="SEC" GridX="32" GridY="27">
