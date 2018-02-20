@@ -1,4 +1,4 @@
-[logo]: seneca_web.png "SENECA S.r.l."
+[logo]: (seneca_web.png)
 
 # About
 This project is designed to show an mqtt client/server environment with SENECA Mqtt enabled devices. The project is for debug purposes but can be extended.
