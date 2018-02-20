@@ -1,0 +1,5 @@
+.idea
+/seal/*.out
+/seal/*.debug
+/web-client/src/app/services/config.ts
+/seal/mqtt.seal

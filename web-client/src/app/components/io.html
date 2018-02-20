@@ -1,0 +1,17 @@
+<div>
+  <h6>{{ this.name }}</h6>
+  <div class="row">
+    <div class="col-md-{{ command > 0 ? '6' : '12' }} text-center">
+      <div class="alert alert-primary text-center" role="alert" *ngIf="!digital">
+        {{ (value | async | toVal) }}
+      </div>
+
+      <div class="alert alert-{{ value | async | toColor }} text-center" role="alert" *ngIf="digital">
+        {{ value | async | toBooleanString }}
+      </div>
+    </div>
+    <div class="col-md-6 text-center" *ngIf="command > 0">
+      <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="SendCommand()">&raquo; Toggle</button>
+    </div>
+  </div>
+</div>
