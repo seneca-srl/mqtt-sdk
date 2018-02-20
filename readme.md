@@ -1,3 +1,5 @@
+[SENECA S.r.l.]: seneca_web.png "SENECA S.r.l."
+
 # About
 This project is designed to show an mqtt client/server environment with SENECA Mqtt enabled devices. The project is for debug purposes but can be extended.
 You can find a complete broker and a web application that act as a client (with an UI).
