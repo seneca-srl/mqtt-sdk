@@ -4,6 +4,9 @@
 This project is designed to show an mqtt client/server environment with SENECA Mqtt enabled devices. The project is for debug purposes but can be extended.
 You can find a complete broker and a web application that act as a client (with an UI).
 
+# PREREQUISITE
+You need a Node JS environment at least 6.x to run the example in all its parts, don't forget to run with administrative privileges.
+
 # CONFIGURATION
 Programm the RTU with the peoject mqtt in seal directory; remember to setup the mqtt broker address: usually in a local environment the ip is your pc address. Once programmed you need to set the correct mac address of the rtu, you can find it in the Seal connection panel. Rename the file web-client/src/app/services/example_config.ts in config.ts. Open this file and edit the row setting your mac addess (without ":"):
 
