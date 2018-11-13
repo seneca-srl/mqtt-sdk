@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MqttMessage } from 'ngx-mqtt';
+import { IMqttMessage } from 'ngx-mqtt';
 
 @Pipe({ name: 'toVal', pure: false })
 export class ToVal implements PipeTransform {
 
-  transform(message: MqttMessage): number {
+  transform(message: IMqttMessage): number {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -20,7 +20,7 @@ export class ToVal implements PipeTransform {
 @Pipe({ name: 'toBoolean', pure: false })
 export class ToBoolean implements PipeTransform {
 
-  transform(message: MqttMessage): boolean {
+  transform(message: IMqttMessage): boolean {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -36,7 +36,7 @@ export class ToBoolean implements PipeTransform {
 @Pipe({ name: 'toBooleanString', pure: false })
 export class ToBooleanString implements PipeTransform {
 
-  transform(message: MqttMessage): String {
+  transform(message: IMqttMessage): String {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -52,7 +52,7 @@ export class ToBooleanString implements PipeTransform {
 @Pipe({ name: 'toColor', pure: false })
 export class ToColor implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -68,7 +68,7 @@ export class ToColor implements PipeTransform {
 @Pipe({ name: 'statusToString', pure: false })
 export class StatusToString implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -86,7 +86,7 @@ export class StatusToString implements PipeTransform {
 @Pipe({ name: 'statusToColor', pure: false })
 export class StatusToColor implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -104,7 +104,7 @@ export class StatusToColor implements PipeTransform {
 @Pipe({ name: 'statusToUptime', pure: false })
 export class StatusToUptime implements PipeTransform {
 
-  transform(message: MqttMessage): Date {
+  transform(message: IMqttMessage): Date {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -120,7 +120,7 @@ export class StatusToUptime implements PipeTransform {
 @Pipe({ name: 'eventToText', pure: false })
 export class EventToText implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -148,7 +148,7 @@ export class EventToText implements PipeTransform {
 @Pipe({ name: 'eventToTime', pure: false })
 export class EventToTime implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -172,7 +172,7 @@ export class EventToTime implements PipeTransform {
 @Pipe({ name: 'eventToId', pure: false })
 export class EventToId implements PipeTransform {
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 
@@ -206,7 +206,7 @@ export class EventToType implements PipeTransform {
   private INFO = 8;
   private DEBUG = 9;
 
-  transform(message: MqttMessage): string {
+  transform(message: IMqttMessage): string {
     try {
       let payload: any = JSON.parse(message.payload.toString());
 

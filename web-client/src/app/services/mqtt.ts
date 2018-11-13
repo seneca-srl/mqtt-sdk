@@ -4,11 +4,8 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { Config } from './config';
 
 import {
-  MqttMessage,
-  MqttModule,
-  MqttService,
-  MqttServiceOptions,
-  OnMessageEvent
+  IMqttMessage,
+  MqttService
 } from 'ngx-mqtt';
 
 export type QoS = 0 | 1 | 2;
@@ -16,7 +13,7 @@ export type QoS = 0 | 1 | 2;
 @Injectable()
 export class Mqtt extends Config {
   private mqtt: MqttService = null;
-  public Messages: BehaviorSubject<MqttMessage> = new BehaviorSubject<MqttMessage>(null);
+  public Messages: BehaviorSubject<IMqttMessage> = new BehaviorSubject<IMqttMessage>(null);
   public Updated: BehaviorSubject<Date> = new BehaviorSubject<Date>(new Date());
   public Count: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -52,7 +49,7 @@ export class Mqtt extends Config {
       .subscribe((err) => console.log(err));
   }
 
-  public subscribe(filter: string): Observable<MqttMessage> {
+  public subscribe(filter: string): Observable<IMqttMessage> {
     return this.mqtt.observe(this.appNs() + filter);
   }
 
